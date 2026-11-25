@@ -83,9 +83,14 @@ POST http://localhost/ask -> 200 OK
 ## Part 3: Cloud Deployment
 
 ### Exercise 3.1 / 3.2: Deployment (agent Part 6)
-- Platform: *(Railway / Render)*
-- Public URL: *(TODO)*
-- Screenshot: `screenshots/dashboard.png`, `screenshots/running.png`, `screenshots/test.png`
+- **Platform:** Render (Docker Web Service + Render Key Value Redis)
+- **Public URL:** https://k5-l3-day14-lethaiduong-2a202603415.onrender.com
+- **Kết quả tự kiểm tra 4 lệnh CP6:**
+  - `GET /health` → `200`
+  - `GET /ready` → `200`
+  - `POST /ask` (không có `X-API-Key`) → `401`
+  - `POST /ask` (có `X-API-Key`) → `200`: `{"question":"Hello","answer":"Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."}`
+- **Screenshot:** `screenshots/dashboard.png`, `screenshots/running.png`, `screenshots/test.png` (xem thêm `DEPLOYMENT.md`).
 
 ### So sánh `railway.toml` vs `render.yaml`
 - **`railway.toml`** (định dạng TOML): Cấu hình gọn cho **1 service** hiện tại (`[build] builder = "DOCKERFILE"`, `[deploy] healthcheckPath = "/health"`, `restartPolicyType`), không khai báo trực tiếp env vars hay database đi kèm trong file mà cấu hình qua Railway Dashboard/CLI.
