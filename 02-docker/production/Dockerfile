@@ -17,11 +17,7 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
-# Cài build dependencies (cần cho một số packages như numpy)
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Bỏ qua apt-get gcc/libpq-dev vì fastapi/uvicorn dùng wheel sẵn (tránh lỗi proxy 401 với deb.debian.org)
 
 # Copy và cài requirements
 # Dùng --user để install vào /root/.local (dễ copy sang stage 2)

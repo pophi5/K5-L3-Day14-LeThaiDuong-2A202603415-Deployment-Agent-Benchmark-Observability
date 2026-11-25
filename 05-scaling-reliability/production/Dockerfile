@@ -6,8 +6,7 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y gcc libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Bỏ qua apt-get gcc/libpq-dev vì fastapi/uvicorn/redis dùng wheel sẵn (tránh lỗi proxy 401 với deb.debian.org)
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir --user -r requirements.txt

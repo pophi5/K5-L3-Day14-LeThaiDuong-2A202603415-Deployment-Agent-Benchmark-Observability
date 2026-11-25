@@ -9,7 +9,7 @@ Bài chỉ được tính hoàn thành khi script chấm báo **`PASS 12/12`**:
 pip install -r requirements.txt
 python check_production_ready.py
 ```
-
+wsl --install
 ---
 
 ## Checklist Deliverable
